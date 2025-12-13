@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Моя программа и я</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #f5f9ff;
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        header {
+            background: linear-gradient(135deg, #4a6fa5 0%, #2c3e50 100%);
+            color: white;
+            padding: 80px 0 40px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        header::before {
+            content: "";
+            position: absolute;
+            width: 300px;
+            height: 300px;
+            background-color: rgba(255, 255, 255, 0.05);
+            border-radius: 50%;
+            top: -150px;
+            right: -100px;
+        }
+        
+        header::after {
+            content: "";
+            position: absolute;
+            width: 200px;
+            height: 200px;
+            background-color: rgba(255, 255, 255, 0.05);
+            border-radius: 50%;
+            bottom: -100px;
+            left: -50px;
+        }
+        
+        .header-content {
+            position: relative;
+            z-index: 1;
+        }
+        
+        h1 {
+            font-size: 3.2rem;
+            margin-bottom: 15px;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
+        }
+        
+        .tagline {
+            font-size: 1.4rem;
+            font-weight: 300;
+            max-width: 700px;
+            margin: 0 auto 30px;
+            opacity: 0.9;
+        }
+        
+        .profile-img {
+            width: 180px;
+            height: 180px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 5px solid rgba(255, 255, 255, 0.2);
+            margin: 30px auto;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+        }
+        
+        .main-content {
+            padding: 80px 0;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+        }
+        
+        @media (max-width: 900px) {
+            .main-content {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        .section-title {
+            font-size: 2.2rem;
+            color: #2c3e50;
+            margin-bottom: 30px;
+            padding-bottom: 15px;
+            border-bottom: 3px solid #4a6fa5;
+        }
+        
+        .card {
+            background-color: white;
+            border-radius: 15px;
+            padding: 40px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.12);
+        }
+        
+        .about-me p {
+            margin-bottom: 20px;
+            font-size: 1.1rem;
+        }
+        
+        .skills {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 20px;
+        }
+        
+        .skill-tag {
+            background-color: #eef5ff;
+            padding: 8px 16px;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            color: #4a6fa5;
+            font-weight: 600;
+        }
+        
+        .program-features {
+            list-style-type: none;
+            margin-top: 20px;
+        }
+        
+        .program-features li {
+            padding: 12px 0;
+            border-bottom: 1px solid #eee;
+            font-size: 1.05rem;
+            position: relative;
+            padding-left: 40px;
+        }
+        
+        .program-features li:last-child {
+            border-bottom: none;
+        }
+        
+        .program-features li i {
+            position: absolute;
+            left: 0;
+            top: 12px;
+            color: #4a6fa5;
+            font-size: 1.2rem;
+        }
+        
+        .tech-stack {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-top: 25px;
+        }
+        
+        .tech-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            width: 80px;
+            height: 80px;
+            background-color: #f8fbff;
+            border-radius: 12px;
+            font-weight: 600;
+            color: #2c3e50;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+        }
+        
+        .tech-item:hover {
+            background-color: #4a6fa5;
+            color: white;
+            transform: scale(1.05);
+        }
+        
+        .tech-icon {
+            font-size: 1.8rem;
+            margin-bottom: 8px;
+        }
+        
+        .cta-section {
+            background-color: #2c3e50;
+            color: white;
+            padding: 70px 0;
+            text-align: center;
+        }
+        
+        .cta-title {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+        }
+        
+        .cta-text {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto 40px;
+            opacity: 0.9;
+        }
+        
+        .btn {
+            display: inline-block;
+            background: linear-gradient(to right, #4a6fa5, #3a5a8a);
+            color: white;
+            padding: 16px 40px;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            text-decoration: none;
+            box-shadow: 0 8px 20px rgba(58, 90, 138, 0.3);
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+        }
+        
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 25px rgba(58, 90, 138, 0.4);
+            background: linear-gradient(to right, #3a5a8a, #2c3e50);
+        }
+        
+        .contact-info {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-top: 40px;
+            flex-wrap: wrap;
+        }
+        
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 1.1rem;
+        }
+        
+        .contact-item i {
+            font-size: 1.4rem;
+            color: #4a6fa5;
+        }
+        
+        footer {
+            background-color: #1a2530;
+            color: #aaa;
+            text-align: center;
+            padding: 30px 0;
+            font-size: 0.95rem;
+        }
+        
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.5rem;
+            }
+            
+            .tagline {
+                font-size: 1.2rem;
+            }
+            
+            .card {
+                padding: 30px 25px;
+            }
+            
+            .section-title {
+                font-size: 1.8rem;
+            }
+            
+            .cta-title {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Шапка сайта -->
+    <header>
+        <div class="container header-content">
+            <h1>Зайцев максимилиан</h1>
+            <p class="tagline">Разработчик мем вируса</p>
+            <img src="C:\Users\adm\Pictures\Camera Roll\WIN_20250604_22_09_43_Pro.jpg">
+        </div>
+    </header>
+    
+    <!-- Основной контент -->
+    <section class="container main-content">
+        <!-- Блок "Обо мне" -->
+        <div class="about-me card">
+            <h2 class="section-title">Обо мне</h2>
+            <p>Привет! Меня зовут максим, и я разработчик с более чем 3-летним опытом</p>
+            
+            <h3 style="margin-top: 30px; margin-bottom: 15px; color: #2c3e50;">Мои навыки</h3>
+            <div class="skills">
+                <span class="skill-tag">Их нет</span>
+            </div>
+        </div>
+        
+        <!-- Блок "Моя программа" -->
+        <div class="my-program card">
+            <h2 class="section-title">Моя программа: tg virus</h2>
+            <p><strong>TaskFlow Pro</strong> — это инновационное приложение для управления пк и задачами, созданное с целью забрать ваш пк</p>
+            <p>Программа сочетает в себе простоту использования с мощными функциями, которые обычно встречаются только в корпоративных решениях.</p>
+            
+            <h3 style="margin-top: 30px; margin-bottom: 15px; color: #2c3e50;">Ключевые возможности</h3>
+            <ul class="program-features">
+                <li><i class="fas fa-check-circle"></i> Кроссплатформенность (Windows)</li>
+                <li><i class="fas fa-check-circle"></i> Шифрование данных и регулярные автоматические бэкапы</li>
+            </ul>
+            
+            <h3 style="margin-top: 30px; margin-bottom: 15px; color: #2c3e50;">Технологический стек</h3>
+            <div class="tech-stack">
+                <div class="tech-item">
+                    <div class="tech-icon"><i class="fab fa-python"></i></div>
+                    <div>Python</div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Призыв к действию -->
+    <section class="cta-section">
+        <div class="container">
+            <h2 class="cta-title">Готовы попробовать virus?</h2>
+            <p class="cta-text">Присоединяйтесь к более чем 8 пользователей, которые уже офигели!</p>
+            <a href="https://disk.yandex.ru/d/UgPDfNiQ0QGOLg" class="btn">Скачать с вирусами</a>
+            
+            <div class="contact-info">
+                <div class="contact-item">
+                    <i class="fas fa-envelope"></i>
+                    <span>alex@example.com</span>
+                </div>
+                <div class="contact-item">
+                    <i class="fab fa-github"></i>
+                    <span>https://github.com/forget-ful-day/virus</span>
+                </div>
+                <div class="contact-item">
+                    <i class="fab fa-telegram"></i>
+                    <span>@alex_developer</span>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Подвал сайта -->
+    <footer>
+        <div class="container">
+            <p>&copy; 2023 Александр Иванов. Все права защищены.</p>
+            <p style="margin-top: 10px;">tg virus является зарегистрированным товарным знаком.</p>
+        </div>
+    </footer>
+    
+    <script>
+        // Простая анимация для кнопки
+        document.querySelector('.btn').addEventListener('mouseenter', function() {
+            this.style.transform = 'translateY(-3px)';
+        });
+        
+        document.querySelector('.btn').addEventListener('mouseleave', function() {
+            this.style.transform = 'translateY(0)';
+        });
+        
+        // Плавная прокрутка для ссылок
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if(targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if(targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+        
+        // Анимация появления карточек при загрузке
+        document.addEventListener('DOMContentLoaded', function() {
+            const cards = document.querySelectorAll('.card');
+            cards.forEach((card, index) => {
+                setTimeout(() => {
+                    card.style.opacity = '0';
+                    card.style.transform = 'translateY(20px)';
+                    card.style.transition = 'opacity 0.8s ease, transform 0.8s ease';
+                    
+                    setTimeout(() => {
+                        card.style.opacity = '1';
+                        card.style.transform = 'translateY(0)';
+                    }, 100);
+                }, index * 200);
+            });
+        });
+    </script>
+</body>
+</html>
